@@ -3,14 +3,11 @@ source 'https://rubygems.org'
 #bundle edge Ralis instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
-group :production do                                                            # specifies different databases for our dev and production enviroment 
-  gem 'pg'                                                                      # because it is an easy to use database perfet for rapid testing
+group :production do                                                            # specifies different databases for our dev and production enviroment                                                                     # because it is an easy to use database perfet for rapid testing
   gem 'rails_12factor'                                                          #added to gemfile then installed on application
 end
 
-group :development do
-  gem 'sqlite3'
-end
+gem 'pg'
 
 #use SCSS for styleshets
 gem 'sass-rails', '~> 5.0'
