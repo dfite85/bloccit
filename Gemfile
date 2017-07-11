@@ -3,11 +3,19 @@ source 'https://rubygems.org'
 #bundle edge Ralis instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
-group :production do                                                            # specifies different databases for our dev and production enviroment                                                                     # because it is an easy to use database perfet for rapid testing
+group :production do                                                            # specifies different databases for our dev and production enviroment       # because it is an easy to use database perfet for rapid testing
   gem 'rails_12factor'                                                          #added to gemfile then installed on application
+  gem 'pg'
 end
 
-gem 'pg'
+group :development do                                                           #added development group per lesson 12
+    gem 'pg'                                                                    #selected gem postgres as sqlite3 does not work
+end
+
+group :development, :test do                                                    #New group per lesson 12
+    gem 'rspec-rails', '~>3.0'                                                  #uses rspec gem file to both enviroments because we want its tasks and generators to be avail in both
+end
+
 
 #use SCSS for styleshets
 gem 'sass-rails', '~> 5.0'
