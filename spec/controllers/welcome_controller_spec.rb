@@ -9,7 +9,7 @@ RSpec.describe WelcomeController, type: :controller do
     end
     
     describe "GET about" do                                                     #describes the subject of the spec
-        it "renders the about template" do                                     
+        it "renders the about template" do                           
             get :about                                                          #uses get to call the about method of welcomeController
             expect(response).to render_template("about")                        #expects the controllers response to render the About template
         end

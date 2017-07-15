@@ -16,6 +16,8 @@ group :development, :test do                                                    
     gem 'rspec-rails', '~>3.0'                                                  #uses rspec gem file to both enviroments because we want its tasks and generators to be avail in both
 end
 
+gem 'bootstrap-sass'
+
 
 #use SCSS for styleshets
 gem 'sass-rails', '~> 5.0'
