@@ -1,0 +1,23 @@
+
+
+    .social-btn  {
+        display:block;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border: 2px solid yellow;
+        border-radius: 50%;
+        color:black;
+        -webkit-transform:rotate(90deg);
+        text-align:center;
+        background:yellow;
+        box-shadow: 0 0 3px yellow;
+        font-size:20px;
+        font-weight:bold;
+    }
+    
+    .social-btn:hover{
+        -webkit-transform:rotate(450deg);
+        -webkit-transition:all 1s ease-in-out;
+       
+    }
