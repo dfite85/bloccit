@@ -9,7 +9,8 @@ group :production do                                                            
 end
 
 group :development do                                                           #added development group per lesson 12
-    gem 'pg'                                                                    #selected gem postgres as sqlite3 does not work
+    gem 'pg'  
+    gem 'pry-rails'
 end
 
 group :development, :test do                                                    #New group per lesson 12
