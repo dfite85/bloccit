@@ -5,3 +5,29 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'random_data'
+
+#create Posts
+50.times do                                                                     #this will run the block the specified number of times
+
+  Post.create!(                                                                 #use create with a ! instructs the method to raise an error if there is a problem with the data seeded
+      
+      title:  RandomData.random_sentence,                                       #using a method that does not exist yet is known as WISHFUL CODING, will create random string for title and body
+      body:   RandomData.random_paragraph
+   )
+end
+
+posts = Post.all
+
+#create Comments
+
+100.times do
+    Comment.create!(
+        post:  posts.sample,                                                    #sample retruns a random element from the array every time its called
+        body:  RandomData.random_paragraph                                      #the comma used in these blocks are to seperate lines of code
+    )
+end
+
+puts "Seed finished"
+puts "#{Post.count} posts created"
+puts "#{Comment.count} comments created"
