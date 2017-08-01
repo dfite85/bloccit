@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
-  get 'welcome/about'
+  
+  resources :posts                                                              #calls the resource method and passes it a symbol
+  
+  get 'about' => 'welcome#about'
   
   get 'welcome/contact'
   
