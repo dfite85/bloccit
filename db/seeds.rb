@@ -35,3 +35,12 @@ puts "{Post.count}"
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+
+
+10.times do
+    Advertisement.create!(                                                                 #use create with a ! instructs the method to raise an error if there is a problem with the data seede
+      title:  RandomData.random_sentence,                                       #using a method that does not exist yet is known as WISHFUL CODING, will create random string for title and body
+      copy:   RandomData.random_paragraph,
+      price:  99
+   )
+end

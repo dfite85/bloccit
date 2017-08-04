@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+
+  resources :advertisements 
   resources :posts                                                              #calls the resource method and passes it a symbol
   
   get 'about' => 'welcome#about'
