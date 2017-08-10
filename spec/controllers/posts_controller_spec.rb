@@ -66,6 +66,63 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:post)).to eq(my_post)
     end
   end
+  
+  describe "GET edit" do
+    it "returns http success" do
+      get :edit, {id: my_post.id}
+      expect(response).to have_http_status(:success)
+    end
+    
+    it "renders the #edit view" do
+      get :edit, {id: my_post.id}
+      expect(response).to render_template :edit                                 #expect the edit view to render when a post is edited
+    end
+    
+    it "assigns post to be updated to @post" do                                 #we test that edit assigns the correct post to be updated to @post
+      get :edit, {id: my_post.id}
+      post_instance = assigns(:post)
+      expect(post_instance.id).to eq my_post.id
+      expect(post_instance.title).to eq my_post.title
+      expect(post_instance.body).to eq my_post.body
+    end
+  end
+  
+  describe "PUT update" do
+    it "updates post with expected attributes" do
+      new_title = RandomData.random_sentence
+      new_body = RandomData.random_paragraph
+      
+      put :update, id: my_post.id, post: {title: new_title, body: new_body}
+      
+      updated_post = assigns(:post)
+      expect(updated_post.id).to eq my_post.id                                  #test that the @post was updated wit the title and body passed to update and that id was not changed
+      expect(updated_post.title).to eq new_title
+      expect(updated_post.body).to eq new_body                          #new body
+    end
+    
+    it "redirests to the updated post" do
+      new_title = RandomData.random_sentence
+      new_body = RandomData.random_paragraph
+      put :update, id: my_post.id, post: {title: new_title, body: new_body}
+      expect(response).to redirect_to my_post                                   #expected to be redirected to posts show after the update
+    end
+    
+  end
+  
+  describe "DELETE destroy" do
+    it "deletes the post" do
+      delete :destroy, {id: my_post.id}
+      count = Post.where({id: my_post.id}).size
+      expect(count).to eq 0
+    end
+    
+    it "redirects th posts index" do
+      delete :destroy, {id: my_post.id}
+      expect(response).to redirect_to posts_path
+    end
+    
+  end
+  
 end
   
     
@@ -74,15 +131,6 @@ end
   describe "GET #show" do
     it "returns http success" do
       get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-
-
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
       expect(response).to have_http_status(:success)
     end
   end
