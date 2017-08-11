@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  resources :questions
   resources :advertisements 
   resources :posts                                                              #calls the resource method and passes it a symbol
   
