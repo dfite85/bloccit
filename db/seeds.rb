@@ -8,10 +8,18 @@
 require 'random_data'
 
 #create Posts
+15.times do
+    topic.create!(
+        name:           RandomData.random_sentence,
+        description:    RandomData.random_paragraph
+        )
+    end
+    topics = Topic.all
+
 50.times do                                                                     #this will run the block the specified number of times
 
   Post.create!(                                                                 #use create with a ! instructs the method to raise an error if there is a problem with the data seeded
-      
+      topic:  topics.sample,
       title:  RandomData.random_sentence,                                       #using a method that does not exist yet is known as WISHFUL CODING, will create random string for title and body
       body:   RandomData.random_paragraph
    )
@@ -33,6 +41,7 @@ Post.find_or_create_by(title: "Random ass title", body: "Random ass body")
 puts "{Post.count}"
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions created"
@@ -54,3 +63,7 @@ end
         resolved: false
         )
     end
+    
+    
+
+    

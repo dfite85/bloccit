@@ -11,6 +11,7 @@ end
 group :development do                                                           #added development group per lesson 12
     gem 'pg'  
     gem 'pry-rails'
+    gem 'shoulda'
 end
 
 group :development, :test do                                                    #New group per lesson 12
