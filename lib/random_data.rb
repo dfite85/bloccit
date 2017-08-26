@@ -24,6 +24,13 @@ module RandomData                                                               
         letters.shuffle!                                                        #shuffles the letters (.shuffle! in place) without (!)would retrun an array rather than shuffle
         letters[0,rand(3..8)].join                                              #joins 0 and the nth item which is determined by the rand(3..8)
     end
+    
+    def self.random_number
+        numbers = []
+        rand(10..15).times do
+            numbers << random_number
+    end
+    end
 end
 
     

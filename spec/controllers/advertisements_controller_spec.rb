@@ -8,8 +8,8 @@ RSpec.describe AdvertisementsController, type: :controller do
       id: 1,
       title: RandomData.random_sentence,
       copy: RandomData.random_paragraph,
-      price: 99
-    )
+      price: RandomData.random_number                                           #get this checked to see if its working right
+    ) 
   end
 
   describe "GET #index" do

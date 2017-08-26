@@ -9,17 +9,16 @@ require 'random_data'
 
 #create Posts
 15.times do
-    topic.create!(
+   Topic.create!(
         name:           RandomData.random_sentence,
         description:    RandomData.random_paragraph
         )
     end
-    topics = Topic.all
 
 50.times do                                                                     #this will run the block the specified number of times
 
   Post.create!(                                                                 #use create with a ! instructs the method to raise an error if there is a problem with the data seeded
-      topic:  topics.sample,
+      topic_id:  Topic.last.id,
       title:  RandomData.random_sentence,                                       #using a method that does not exist yet is known as WISHFUL CODING, will create random string for title and body
       body:   RandomData.random_paragraph
    )
@@ -45,13 +44,14 @@ puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions created"
+puts "#{SponsoredPost.count} Sponsored Posts created"
 
 
 10.times do
     Advertisement.create!(                                                                 #use create with a ! instructs the method to raise an error if there is a problem with the data seede
       title:  RandomData.random_sentence,                                       #using a method that does not exist yet is known as WISHFUL CODING, will create random string for title and body
       copy:   RandomData.random_paragraph,
-      price:  99
+      price:  RandomData.random_number
    )
 end
 
@@ -61,6 +61,14 @@ end
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph,
         resolved: false
+        )
+    end
+    
+3.times do
+    SponsoredPost.create!(
+        title:  RandomData.random_sentence,
+        body:   RandomData.random_paragraph,
+        price:  RandomData.random_number
         )
     end
     

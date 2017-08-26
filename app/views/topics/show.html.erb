@@ -10,6 +10,7 @@
             <div class="media-body">
                 <h4 class="media-heading">
                     <%= link_to post.title, topic_post_path(@topic, post) %>
+                    <%= link_to post.title, topic_post_paht(@SponsoredPosts, post) %>
                 </h4>
                 <small>
                     submitted <%= time_ago_in_words(post.created_at) %> ago <br>
@@ -21,5 +22,6 @@
     </div>
     <div class="col-md-4">
         <%= link_to "New Post", new_topic_path(@topic), class: "btn btn-success" %>
+        <%= link_to "New Sponsored Post", new_topic_path(@SponsoredPosts), class: "btn btn-success" %>
     </div>
 </div>
