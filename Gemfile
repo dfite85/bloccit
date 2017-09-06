@@ -20,6 +20,9 @@ end
 
 gem 'bootstrap-sass'
 
+#used for encrypting User passwords
+gem 'bcrypt'
+
 
 #use SCSS for styleshets
 gem 'sass-rails', '~> 5.0'
@@ -31,6 +34,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 #turbolinks makes the following links in you web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+
+
 
 
 
