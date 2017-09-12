@@ -66,6 +66,11 @@ RSpec.describe PostsController, type: :controller do
        end
      end
    end
+   
+  context "signed-in user" do
+     before do
+       create_session(my_user)
+  end
   
   describe "GET new" do
     
@@ -96,10 +101,7 @@ RSpec.describe PostsController, type: :controller do
         expect(assigns(:post)).to eq Post.last
       end
     
-      it "redirects to the new post" do                                           #expect to be redirected to the new post
-        post :create, topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph }
-        expect(response).to redirect_to [my_topic, Post.last]
-      end
+
   end
   
   describe "GET show" do
@@ -176,7 +178,7 @@ RSpec.describe PostsController, type: :controller do
     end
     
   end
-  
+end
 end  
   
     

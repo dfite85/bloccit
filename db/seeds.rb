@@ -38,7 +38,7 @@ posts = Post.all
 
 #create Comments
 
-100.times do
+20.times do
     Comment.create!(
         post:  posts.sample,                                                    #sample retruns a random element from the array every time its called
         body:  RandomData.random_paragraph                                      #the comma used in these blocks are to seperate lines of code
@@ -73,7 +73,7 @@ puts "#{SponsoredPost.count} Sponsored Posts created"
 end
 
 
-100.times do 
+10.times do 
     Question.create!(
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph,
