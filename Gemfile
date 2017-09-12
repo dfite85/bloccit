@@ -22,8 +22,6 @@ gem 'bootstrap-sass'
 
 #used for encrypting User passwords
 gem 'bcrypt'
-
-
 #use SCSS for styleshets
 gem 'sass-rails', '~> 5.0'
 #use Uglifier as compressor for JavaScript assets
