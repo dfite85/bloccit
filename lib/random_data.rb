@@ -36,11 +36,10 @@ module RandomData                                                               
     end
     
     def self.random_number
-        numbers = []
-        rand(10..15).times do
-            numbers << random_number
+        10.times.map{ 20 + Random.rand(11) } 
+
     end
-    end
+    
 end
 
     
