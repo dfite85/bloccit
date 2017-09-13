@@ -45,11 +45,20 @@ posts = Post.all
     )
 end
 
-user = User.first
-user.update_attributes!(
-    email: 'dfite85@gmail.com',
-    password: 'helloworld',
-    )
+ # Create an admin user
+ admin = User.create!(
+   name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
+ )
+ 
+ # Create a member
+ member = User.create!(
+   name:     'Member User',
+   email:    'member@example.com',
+   password: 'helloworld'
+ )
 
 puts "#{Post.count}"
 Post.find_or_create_by(title: "Random ass title", body: "Random ass body")
