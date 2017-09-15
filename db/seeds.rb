@@ -62,7 +62,7 @@ end
  
  #create a moderator 
    moderator = User.create!(
-   name:     'Admin User',
+   name:     'Moderator User',
    email:    'admin@example.com',
    password: 'helloworld',
    role:     'admin'
