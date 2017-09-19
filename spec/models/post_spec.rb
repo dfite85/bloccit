@@ -10,6 +10,7 @@ RSpec.describe Post, type: :model do
   let(:user) { User.create!(name: "User", email: "user@bloccit.com", password: "helloworld") }
   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
   
+  it { is_expected.to have_many(:comments) }
   it { is_expected.to belong_to(:topic) }                                       #constant failure for no method error!!
   it { is_expected.to belong_to(:user) }
   
