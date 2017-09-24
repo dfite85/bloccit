@@ -25,12 +25,14 @@ users = User.all
     end
 #create post
 50.times do                                                                     #this will run the block the specified number of times
-    Post.create!(                                                                 #use create with a ! instructs the method to raise an error if there is a problem with the data seeded
+    post = Post.create!(                                                        #use create with a ! instructs the method to raise an error if there is a problem with the data seeded
       user: users.sample,
       topic_id:  Topic.last.id,
       title:  RandomData.random_sentence,                                       #using a method that does not exist yet is known as WISHFUL CODING, will create random string for title and body
       body:   RandomData.random_paragraph
    )
+   post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+   rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: user.sample) }
 end
 
 posts = Post.all
@@ -108,5 +110,9 @@ puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions created"
 puts "#{SponsoredPost.count} Sponsored Posts created"
+puts "#{Vote.count} votes created"
+
+end
+
 
     
