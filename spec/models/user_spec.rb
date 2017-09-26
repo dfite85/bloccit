@@ -23,12 +23,10 @@ require 'rails_helper'
        expect(user).to respond_to(:role)
      end
  
- # #2
      it "responds to admin?" do
        expect(user).to respond_to(:admin?)
      end
  
- # #3
      it "responds to member?" do
        expect(user).to respond_to(:member?)
      end
@@ -112,6 +110,7 @@ require 'rails_helper'
      
      it { is_expected.to have_many(:comments) }
      it { is_expected.to have_many(:votes) }
+     it { is_expected.to have_many(:favorites) }
  
      it "should be an invalid user due to blank name" do
        expect(user_with_invalid_name).to_not be_valid
@@ -120,7 +119,39 @@ require 'rails_helper'
      it "should be an invalid user due to blank email" do
        expect(user_with_invalid_email).to_not be_valid
      end
- 
-   end
+    end
  end
+ 
+    describe "#favorite_for(post)" do
+     before do
+       topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+     end
+ 
+     it "returns `nil` if the user has not favorited the post" do
+       expect(user.favorite_for(@post)).to be_nil
+     end
+ 
+     it "returns the appropriate favorite if it exists" do
+       favorite = user.favorites.where(post: @post).create
+       expect(user.favorite_for(@post)).to eq(favorite)
+     end
+   end
+   
+   
+   describe "#favorite_for(post)" do
+     before do
+       topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+     end
+ 
+     it "returns `nil` if the user has not favorited the post" do
+       expect(user.favorite_for(@post)).to be_nil
+     end
+ 
+     it "returns the appropriate favorite if it exists" do
+       favorite = user.favorites.where(post: @post).create
+       expect(user.favorite_for(@post)).to eq(favorite)
+     end
+   end
 end
