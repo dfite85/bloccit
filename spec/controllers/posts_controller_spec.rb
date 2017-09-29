@@ -3,12 +3,13 @@ include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
   
-  let(:my_user) { User.create!(name: "User", email: "user@bloccit.com", password: "helloworld") }
-  let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
+  let(:my_user) { create(:user) }
+  let(:my_topic) { create(:topic) }
+  let(:my_post) { create(:post, topic: my_topic, user: my_user) }
+  let(:other_user) { create(:user) }
 
      context "guest user" do
- # #6
+       
      describe "GET show" do
        it "returns http success" do
          get :show, topic_id: my_topic.id, id: my_post.id
@@ -26,11 +27,9 @@ RSpec.describe PostsController, type: :controller do
        end
      end
  
- # #7
      describe "GET new" do
        it "returns http redirect" do
-         get :new, topic_id: my_topic.id
- # #8
+        get :new, topic_id: my_topic.id
          expect(response).to redirect_to(new_session_path)
        end
      end

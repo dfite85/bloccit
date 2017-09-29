@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @post = @topic.posts.build(post_params)
     @post.user = current_user
     if @post.save
-      flash[:notice] = "Post was saved"
+      flash[:notice] = "Your post was saved"
       redirect_to topics_path
     else
       flash.now[:alert] = "There was an error saving the post. Please try again"

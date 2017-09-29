@@ -12,6 +12,7 @@ group :development do                                                           
     gem 'pg'  
     gem 'pry-rails'
     gem 'shoulda'
+    gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :development, :test do                                                    #New group per lesson 12

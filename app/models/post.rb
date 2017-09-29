@@ -3,15 +3,17 @@ class Post < ActiveRecord::Base
     belongs_to :user
     has_many :comments, dependent: :destroy
     has_many :votes, dependent: :destroy                                        #add the votes accociation to post
-    has_many :fovorites, dependent: :destroy
-    after_create :create_favorite
+    has_many :favorites, dependent: :destroy
     
+    after_create :create_favorite
     after_create :create_vote
     
     default_scope { order('created_at DESC') }
     default_scope { order('rank DESC') }
+    
     scope :ordered_by_title, -> { order('created_at DESC') }
     scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
+    scope :visible_to, -> (user) {user ? all : joins(:topic).where('topics.public' => true) }
     
     validates :title, length: { minimum: 5 }, presence: true
     validates :body, length: { minimum: 20 }, presence: true
@@ -37,9 +39,10 @@ class Post < ActiveRecord::Base
    end
    
    def create_favorite
-       Favorite.create(post: self, user: self.user)
+       Favorite.create(post: self, user: self.user)                             #for some reason it cant find this?
        FavoriteMailer.new_post(self).deliver_now
    end
+
    
    private 
    
